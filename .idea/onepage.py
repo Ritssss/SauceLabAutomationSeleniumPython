@@ -33,7 +33,7 @@ def send_key_to_element(driver, xpath, key):
 def clear_element(driver, xpath):
     element=driver.find_element(By.XPATH, xpath)
     element.clear()
-
+#---------------------------------------------------------------------------------------------------------
 '''signup="//a[text()='Sign up']"
 click_element(driver, signup)
 print("sign link clicked")
@@ -94,7 +94,7 @@ else:
 
 time.sleep(80)
 
-
+#------------------------------------------------------------------------------------------------------------------
 '''signup=wait.until(
     EC.element_to_be_clickable((By.XPATH, "//a[text()='Sign up']"))
 ).click()
