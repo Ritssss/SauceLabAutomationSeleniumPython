@@ -1,0 +1,7 @@
+successfully send keys jacket to element ('xpath', "//input[@id='search-field']")
+product searched: jacket
+searched product is: jacket
+succesfully clicked on element:('xpath', "//input[@id='search-submit']")
+clicked searched button
+search button is clicked
+Search page loaded

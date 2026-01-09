@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service #Specifies ChromeDriver pa
 from selenium.webdriver.chrome.options import Options #Options is used to customize the Chrome browser behavior before launching it.
 from selenium.webdriver.common.by import By
 import time
+import allure
 
 chrome_options=Options()
 chrome_options.add_argument("--start-maximized")
@@ -18,6 +19,7 @@ driver=webdriver.Chrome(service=service, options=chrome_options) #use garna ko l
 def click_element(driver, a):
     element=driver.find_element(By.XPATH, a)
     element.click()
+
 
 def send_key_to_element(driver, xpath, key):
     element=driver.find_element(By.XPATH, xpath)
