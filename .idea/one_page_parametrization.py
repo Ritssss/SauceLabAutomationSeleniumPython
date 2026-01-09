@@ -1,11 +1,8 @@
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service #Specifies ChromeDriver path & manages its process
 from selenium.webdriver.chrome.options import Options #Options is used to customize the Chrome browser behavior before launching it.
 from selenium.webdriver.common.by import By
 import time
-from selenium.webdriver.support.ui import WebDriverWait #wait import gareko
-from selenium.webdriver.support import expected_conditions as EC #yo bhaneko explicit wait
 
 chrome_options=Options()
 chrome_options.add_argument("--start-maximized")
@@ -17,7 +14,6 @@ service = Service("C:\\Users\\Sriza\\Downloads\\chromedriver-win64\\chromedriver
 #initialize the driver
 driver=webdriver.Chrome(service=service, options=chrome_options) #use garna ko lagi bhitra lekheko lekhni
 
-wait=WebDriverWait(driver, 10)
 
 def click_element(driver, a):
     element=driver.find_element(By.XPATH, a)
@@ -27,6 +23,10 @@ def send_key_to_element(driver, xpath, key):
     element=driver.find_element(By.XPATH, xpath)
     element.clear()
     element.send_keys(key)
+
+def get_text(driver, xpath):
+    element = driver.find_element(By.XPATH, xpath)
+    return element.text.strip()
 
 login_search_data=[
     {
@@ -84,56 +84,57 @@ search_item="jacket"
 driver.get("https://sauce-demo.myshopify.com/")
 
 
-    # SEARCH
-search = "//input[@id='search-field']"
-send_key_to_element(driver, search,search_item)
+search_input = "//input[@id='search-field']"
+send_key_to_element(driver, search_input, search_item)
 
 search_btn = "//input[@id='search-submit']"
-wait.until(EC.element_to_be_clickable((By.XPATH, search_btn)))
 click_element(driver, search_btn)
+time.sleep(2)
 
-if 'search' in driver.current_url:
-    print("searched product is shown")
+if "search" in driver.current_url:
+    print("Search page loaded")
 else:
-    print("searched prouduct doesnt match with shown product")
+    print("Search page not loaded correctly")
 
+# ----------------- SELECT PRODUCT -----------------
+select_product = "//a[@id='product-1']"
+click_element(driver, select_product)
+time.sleep(2)
 
-    # SELECT PRODUCT
-select_item_product = "//a[@id='product-1']"
-wait.until(EC.element_to_be_clickable((By.XPATH, select_item_product)))
-click_element(driver, select_item_product)
+# ----------------- GET PRODUCT NAME -----------------
+product_title_xpath = "//h1"
+product_name = get_text(driver, product_title_xpath)
+print("product selected:", product_name)
+'''Use //h1 on product detail page. Use <h3> or <a> on search results or listing page.'''
 
-    # ADD TO CART
-add_to_cart = "//input[@value='Add to Cart']"
-wait.until(EC.element_to_be_clickable((By.XPATH, add_to_cart)))
-click_element(driver, add_to_cart)
+# ----------------- ADD TO CART -----------------
+add_to_cart_btn = "//input[@value='Add to Cart']"
+click_element(driver, add_to_cart_btn)
+time.sleep(2)
+print("Product added to cart")
 
+# ----------------- GO TO CART / CHECKOUT -----------------
+checkout_link = "//a[@class='checkout']"
+click_element(driver, checkout_link)
+time.sleep(2)
 
-    #checkout first
-check_out_link = "//a[@class='checkout']"
-click_element(driver, check_out_link)
-
-time.sleep(3)
-
-
-    #checkout item ra searched item same cha ki nai assert garnu parcha
-'''checkout_item="//a[contains(normalize-space(), 'Grey jacket')]"
-wait.until(EC.visibility_of_element_located((By.XPATH,checkout_item))).text.strip()
+# ----------------- GET CART PRODUCT NAME -----------------
+checkout_item_xpath = f"//a[contains(normalize-space(),'Grey jacket')]"
+checkout_item = get_text(driver, checkout_item_xpath)
 print("Checkout item:", checkout_item)
 
-assert search_item.lower() in checkout_item.lower(),\
-    f"Mismatch search page: {search}, Checkout page: {checkout_item}"'''
+# ----------------- ASSERTION -----------------
+if product_name.lower() in checkout_item.lower():
+    print("Assertion passed: Product matches from product page to cart")
+else:
+    print(f"Assertion failed! Product Page: {product_name}, Checkout Page: {checkout_item}")
 
-
-    # Click on Check Out submit button to complete the purchase
-check_out_button = "//input[@id='checkout']"
+# ----------------- CLICK FINAL CHECKOUT BUTTON -----------------
+check_out_button = "//input[@value='Check Out' and @id='checkout']"
 click_element(driver, check_out_button)
+time.sleep(2)
+print("Clicked on final checkout")
 
-
-    # Wait before proceeding to next test
-time.sleep(5)
-
-
-
-
+# ----------------- CLOSE DRIVER -----------------
 driver.quit()
+print("Test completed successfully")
