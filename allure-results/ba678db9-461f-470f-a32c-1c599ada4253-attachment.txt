@@ -1,0 +1,6 @@
+warning: login page may have not loaded properly current url: https://sauce-demo.myshopify.com/
+unable to enter email adddress
+unable to enter password
+Signup button is not clickable
+form is filled and login button is clicked
+Registration is not successful - No redirect and Log Out element not found

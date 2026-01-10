@@ -1,0 +1,34 @@
+successfully send keys sandals to element ('xpath', "//input[@id='search-field']")
+succesfully clicked on element:('xpath', "//input[@id='search-submit']")
+succesfully clicked on element:('xpath', "//a[@id='product-1']")
+Product selected: Bronze sandals
+succesfully clicked on element:('xpath', "//input[@value='Add to Cart']")
+search product and add to cart product is:sandals
+succesfully clicked on element:('xpath', "//a[@class='checkout']")
+checkout link clicked
+Checkout product: Bronze sandals
+actual checkout item is:Bronze sandals
+Checkout button is not clickable: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff74d8e88d5
+	0x7ff74d8e8930
+	0x7ff74d6c165d
+	0x7ff74d719a33
+	0x7ff74d719d3c
+	0x7ff74d76df67
+	0x7ff74d76ac97
+	0x7ff74d70ac29
+	0x7ff74d70ba93
+	0x7ff74dc00620
+	0x7ff74dbfaf60
+	0x7ff74dc196c6
+	0x7ff74d905dd4
+	0x7ff74d90ed7c
+	0x7ff74d8f1ff4
+	0x7ff74d8f21a5
+	0x7ff74d8d7ed2
+	0x7ff96b7b7374
+	0x7ff96cd7cc91
+
+successfully checkout product

@@ -1,0 +1,6 @@
+successfully send keys sandals to element ('xpath', "//input[@id='search-field']")
+searched product is: sandals
+succesfully clicked on element:('xpath', "//input[@id='search-submit']")
+search button is clicked
+Search page not loaded correctly
+search product and shows product doesnot match

@@ -16,6 +16,8 @@ class TestSearch:
     def teardown_method(self):
         self.driver.quit()
 
+    @allure.feature("Product Search")
+    @allure.story("User searches product using keyword")
     @pytest.mark.parametrize("search_data", SEARCH_PRODUCTS)
     def test_search(self, search_data):
         search_product_name=search_data["product_name"]

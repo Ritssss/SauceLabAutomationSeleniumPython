@@ -29,3 +29,7 @@ class SearchPage(BasePage):
         else:
             print("Search page not loaded correctly")
             return False
+
+    def search_product(self,query):
+        self.enter_search_query(query)
+        self.click_search_btn()
