@@ -49,5 +49,6 @@ class LoginPage(BasePage):
                 print("Registration successful - Log Out element found")
                 return True
         except:
-            print("Registration is not successful - No redirect and Log Out element not found")
+            print("Login is not successful - No redirect and Log Out element not found")
             return False
+

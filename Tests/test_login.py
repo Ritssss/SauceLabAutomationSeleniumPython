@@ -32,6 +32,12 @@ class TestSearch:
             print("form is filled and login button is clicked")
 
         with allure.step("verify registration success"):
-            is_logged_in = self.log_in_page.verify_login_success()
+            try:
+                is_logged_in = self.log_in_page.verify_login_success()
 
-            assert_true(is_logged_in,"login failed: Log Out link not visible after login")
+                assert_true(is_logged_in,"login failed: Log Out link not visible after login")
+
+            except Exception as e:
+                self.log_in_page.take_screenshot("login failed")
+                raise e
+

@@ -1,0 +1,9 @@
+successfully send keys jacket to element ('xpath', "//input[@id='search-field']")
+succesfully clicked on element:('xpath', "//input[@id='search-submit']")
+search product is:jacket
+succesfully clicked on element:('xpath', "//a[@id='product-1']")
+select searched product: jacket
+Product selected: Grey jacket
+Product page name: Grey jacket
+succesfully clicked on element:('xpath', "//input[@value='Add to Cart']")
+add searched product to cart

@@ -1,0 +1,8 @@
+succesfully clicked on element:('xpath', "//a[text()='Log In']")
+successfully send keys stharitika0@gmail.com to element ('xpath', "//input[@id='customer_email']")
+email address is:stharitika0@gmail.com
+successfully send keys Ritika*11 to element ('xpath', "//input[@id='customer_password']")
+password is:Ritika*11
+succesfully clicked on element:('xpath', "//input[@value='Sign In']")
+form is filled and login button is clicked
+Registration is not successful - No redirect and Log Out element not found

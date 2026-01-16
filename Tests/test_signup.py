@@ -4,6 +4,7 @@ from pages.registration import SignupPage
 from data.test_data import SIGNUP_DATA
 from utilis.test_runner import create_driver
 from utilis.assertions import assert_true
+from pages.base_page import BasePage
 import allure
 from utilis.assertions import assert_true
 
@@ -11,6 +12,7 @@ class TestSearch:
     def setup_method(self):
         self.driver=create_driver()
         self.sign_up_page=SignupPage(self.driver)
+        self.basepage=BasePage(self.driver)
         self.driver.get("https://sauce-demo.myshopify.com/")
 
 
@@ -34,6 +36,10 @@ class TestSearch:
             print("form is filled and signup button is clicked")
 
         with allure.step("verify registration success"):
-            is_registered = self.sign_up_page.verify_registration_success()
+                is_registered = self.sign_up_page.verify_registration_success()
 
-            assert_true(is_registered,"Registration failed: Log Out link not visible after signup")
+                if not is_registered:
+                    self.take_screenshot(self.driver, "Registration Failed")
+
+
+                assert_true(is_registered,"Registration failed: Log Out link not visible after signup")
